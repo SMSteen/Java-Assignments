@@ -1,0 +1,23 @@
+@charset "ISO-8859-1";
+* {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  width: 500px;
+  margin: 25px auto;
+}
+table {
+  border: 1px dotted red;
+  border-collapse: collapse;
+}
+td {
+  width: 50px;
+  height: 50px;
+}
+tr:nth-of-type(odd) td:nth-of-type(odd) {
+  background-color: #252525;
+}
+tr:nth-of-type(even) td:nth-of-type(even) {
+  background-color: #252525;
+}
