@@ -1,0 +1,26 @@
+@charset "ISO-8859-1";
+* {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  width: 50%;
+  margin: 10px auto;
+  padding: 25px;
+  box-shadow: 1px 2px 3px #252525;
+  border: 1px dotted #252525;
+}
+input[type='submit'] {
+  width: fit-content;
+  padding: 5px 10px;
+  color: #006666;
+  border: 1px solid #006666;
+  border-radius: 5px;
+  box-shadow: 1px 2px 3px #252525;
+  margin: 10px auto 0px auto;
+  font-weight: bold;
+  cursor: pointer;
+}
+span {
+  color: #006666;
+}
