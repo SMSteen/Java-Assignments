@@ -1,0 +1,36 @@
+@charset "UTF-8";
+form {
+  width: 50%;
+}
+label {
+  display: inline-block;
+  width: 15%;
+  text-align: right;
+  margin: 15px;
+}
+input {
+  width: 75%;
+  padding: 5px;
+}
+.button-container {
+  margin: 0 auto;
+  width: 60%;
+}
+input[type='submit'],
+.button {
+  display: inline-block;
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  border: 1px solid #003300;
+  box-shadow: 1px 2px 3px #252525;
+  margin: 10px;
+  font-size: 1em;
+  cursor: pointer;
+}
+.error {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+}
