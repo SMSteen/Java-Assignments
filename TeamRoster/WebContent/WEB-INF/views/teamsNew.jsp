@@ -14,6 +14,9 @@
 <body>
 	<div class="container">
 		<form action="/TeamRoster/Teams" method="POST">
+			<c:forEach var="error" items="${sessionScope.errors}">
+				<p class="error">${error}</p>
+			</c:forEach>
 			<fieldset>
 				<legend>Add a New Team</legend>
 				<label for="name">Team Name:</label>

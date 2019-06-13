@@ -89,21 +89,61 @@ public class Players extends HttpServlet {
 		Team team = allTeams.get(teamID);
 		System.out.println("team in question is " + team);
 
-		// process form data, create new player
-		Player newPlayer = new Player(request.getParameter("firstName"), request.getParameter("lastName"),
-				Integer.parseInt(request.getParameter("age")));
-		System.out
-				.println(String.format("New player name is %s %s", newPlayer.getFirstName(), newPlayer.getLastName()));
+		// validate form data
+		ArrayList<String> errors = new ArrayList<String>();
+		if ((request.getParameter("firstName") == null) || (request.getParameter("firstName").equals(""))) {
+			errors.add("Please enter the player's first name.");
+		} else if (request.getParameter("firstName").length() < 2) {
+			errors.add("The player's first name must be a minimum of 2 characters.");
+		} else {
+			System.out.print("First name passed validations.");
+		}
+		
+		if ((request.getParameter("lastName") == null) || (request.getParameter("lastName").equals(""))) {
+			errors.add("Please enter the player's last name.");
+		} else if (request.getParameter("lastName").length() < 2) {
+			errors.add("The player's last name must be a minimum of 2 characters.");
+		} else {
+			System.out.print("Last name passed validations.");
+		}
+		
+		if ((request.getParameter("age") == null) || (request.getParameter("lastName").equals(""))) {
+			errors.add("Please enter the player's age.");
+		} else {
+			int age = Integer.parseInt(request.getParameter("age"));
+			if (age < 18 || age > 100) {
+				errors.add("Please enter a valid age. Players must be at least 18, but cannot be older than 100.");
+			} else {
+				System.out.print("Age passed validations.");
+			}
+		}
+		
+		// check if errors after validation
+		if (errors.size() > 0) {
+			// return to form and display errors
+			session.setAttribute("errors", errors);
+			response.sendRedirect(String.format("/TeamRoster/Players?id=%d", teamID));
+		} else {
+			// remove old validation errors
+			if(session.getAttribute("errors") != null) {
+				session.removeAttribute("errors");
+			}
+			// process form data, create new player
+			Player newPlayer = new Player(request.getParameter("firstName"), request.getParameter("lastName"), Integer.parseInt(request.getParameter("age")));
+			System.out.println(
+					String.format("New player name is %s %s", newPlayer.getFirstName(), newPlayer.getLastName()));
 
-		// add the new player to the team
-		team.addPlayer(newPlayer);
-		;
+			// add the new player to the team
+			team.addPlayer(newPlayer);
+			;
 
-		// save updated roster in session
-		session.setAttribute("roster", currRoster);
+			// save updated roster in session
+			session.setAttribute("roster", currRoster);
 
-		// redirect the view
-		response.sendRedirect(String.format("/TeamRoster/Teams?id=%d", teamID));
+			// redirect the view
+			response.sendRedirect(String.format("/TeamRoster/Teams?id=%d", teamID));
+		}
+
 	}
 
 }

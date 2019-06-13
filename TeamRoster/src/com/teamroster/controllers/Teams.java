@@ -82,18 +82,41 @@ public class Teams extends HttpServlet {
 		Roster currRoster = (Roster) session.getAttribute("roster");
 		System.out.println("current roster " + currRoster);
 
-		// process form data, create new team
-		Team newTeam = new Team(request.getParameter("name"));
-		System.out.println(String.format("New team name is %s", newTeam.getTeamName()));
+		// validate form data
+		ArrayList<String> errors = new ArrayList<String>();
+		if ((request.getParameter("name") == null) || (request.getParameter("name").equals(""))) {
+			errors.add("Please enter the team name.");
+		} else if (request.getParameter("name").length() < 2) {
+			errors.add("The team name must be a minimum of 2 characters.");
+		} else {
+			System.out.print("Team name passed validations.");
+		}
 
-		// add the new team to the roster
-		currRoster.setTeams(newTeam);
+		// check if errors after validation
+		if (errors.size() > 0) {
+			// return to form and display errors
+			session.setAttribute("errors", errors);
+			response.sendRedirect(String.format("/TeamRoster/Teams"));
+		} else {
+			if(session.getAttribute("errors") != null) {
+				// remove old errors
+				session.removeAttribute("errors");
+			}
+			
+			// process form data, create new team
+			Team newTeam = new Team(request.getParameter("name"));
+			System.out.println(String.format("New team name is %s", newTeam.getTeamName()));
 
-		// save updated roster in session
-		session.setAttribute("roster", currRoster);
+			// add the new team to the roster
+			currRoster.setTeams(newTeam);
 
-		// redirect the view
-		response.sendRedirect("/TeamRoster/Home");
+			// save updated roster in session
+			session.setAttribute("roster", currRoster);
+
+			// redirect the view
+			response.sendRedirect("/TeamRoster/Home");
+		}
+
 	}
 
 }
