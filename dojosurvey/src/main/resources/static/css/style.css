@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  color: #00124d;
+}
+.container {
+  width: 90%;
+  padding: 25px;
+  margin: 0 auto;
+  background: #c9d6ff; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #e2e2e2,
+    #c9d6ff
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #e2e2e2,
+    #c9d6ff
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+form {
+  display: block;
+  width: 55%;
+  margin: 0 auto;
+}
+fieldset {
+  border: 1px ridge #00124d;
+  padding: 0.5em 1.4em 1.4em 1.4em;
+  box-shadow: 1px 2px 3px #00124d;
+}
+legend {
+  width: auto;
+  padding: 0 10px;
+  border-bottom: none;
+  color: #00124d;
+  font-style: italic;
+  font-weight: bold;
+}
+input,
+select {
+  width: 100%;
+  padding: 5px 0px;
+}
+label {
+  display: block;
+  margin: 10px 0 5px 0;
+  font-weight: bold;
+}
+.button,
+input[type='submit'] {
+  width: fit-content;
+  background-color: lightgray;
+  padding: 5px;
+  margin-left: 85%;
+  border-radius: 5px;
+  color: #00124d;
+  font-weight: bold;
+  text-decoration: none;
+  display: block;
+  border: 2px outset buttonface;
+}
+.error {
+  color: #00124d;
+  font-style: italic;
+  font-weight: bold;
+}
+.labels,
+.values {
+  display: inline-block;
+  margin: 5px;
+  vertical-align: top;
+}
+.labels {
+  width: 15%;
+}
+.values {
+  font-weight: bold;
+  font-style: italic;
+  width: 65%;
+}
